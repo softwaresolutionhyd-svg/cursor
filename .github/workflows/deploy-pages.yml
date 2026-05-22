@@ -3,6 +3,7 @@ name: Deploy Zam Zam menu to GitHub Pages
 on:
   push:
     branches:
+      - main
       - cursor/zam-zam-menu-4d00
   workflow_dispatch:
 
