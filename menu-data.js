@@ -8,6 +8,8 @@ window.ZAM_ZAM_MENU_DATA = {
     hours: "12:00 PM - 12:00 AM",
     phoneLabel: "Order Now",
     phone: "+92 000 0000000",
+    whatsapp: "+92 000 0000000",
+    whatsappMessage: "Assalam o Alaikum, mujhe Zam Zam Pizza & Cafe se order karna hai.",
     locationLabel: "Location",
     address: "Add your restaurant address here",
     helpTitle: "Call us for takeaway or delivery",

@@ -25,6 +25,12 @@
     return "tel:" + String(phone || "").replace(/[^\d+]/g, "");
   }
 
+  function whatsappHref(phone, message) {
+    const number = String(phone || "").replace(/\D/g, "");
+    const text = encodeURIComponent(message || "Assalam o Alaikum, mujhe order karna hai.");
+    return "https://wa.me/" + number + "?text=" + text;
+  }
+
   function renderRestaurant(restaurant) {
     setText("[data-restaurant-name]", restaurant.name);
     setText("[data-tagline]", restaurant.tagline);
@@ -43,6 +49,11 @@
       if (link.hasAttribute("data-phone")) {
         link.textContent = restaurant.phone;
       }
+    });
+
+    document.querySelectorAll("[data-whatsapp-button]").forEach((link) => {
+      const whatsappNumber = restaurant.whatsapp || restaurant.phone;
+      link.href = whatsappHref(whatsappNumber, restaurant.whatsappMessage);
     });
 
     document.title = restaurant.name + " - Online Menu";

@@ -15,6 +15,8 @@
     ["hours", "Hours"],
     ["phoneLabel", "Phone Label"],
     ["phone", "Phone Number"],
+    ["whatsapp", "WhatsApp Number"],
+    ["whatsappMessage", "WhatsApp Message"],
     ["locationLabel", "Location Label"],
     ["address", "Address"],
     ["helpTitle", "Help Title"],
@@ -80,7 +82,7 @@
     container.innerHTML = "";
 
     restaurantFields.forEach(([field, label]) => {
-      const multiline = field === "heroText" || field === "intro" || field === "helpText";
+      const multiline = field === "heroText" || field === "intro" || field === "helpText" || field === "whatsappMessage";
       container.appendChild(
         createField(label, state.restaurant[field], { restaurantField: field }, multiline)
       );
