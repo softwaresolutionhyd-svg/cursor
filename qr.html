@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Printable QR code for Zam Zam Pizza & Cafe online menu.">
+    <title>Print QR - Zam Zam Pizza & Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="qr-page">
+    <main class="qr-card">
+      <p class="eyebrow">Scan for Menu</p>
+      <h1>Zam Zam Pizza & Cafe</h1>
+      <p>
+        Is QR code ko print karke table, counter, flyer, ya packaging par laga dein.
+        Scan karne se online menu open ho jayega.
+      </p>
+
+      <div class="qr-box">
+        <img id="qr-image" alt="QR code for Zam Zam Pizza & Cafe online menu">
+      </div>
+
+      <p class="qr-url" id="menu-url">Generating menu URL...</p>
+
+      <div class="qr-actions">
+        <button class="button primary" type="button" onclick="window.print()">Print QR</button>
+        <a class="button secondary" href="index.html">Open Menu</a>
+      </div>
+    </main>
+
+    <script>
+      const menuUrl = new URL("index.html", window.location.href).href;
+      const qrImage = document.getElementById("qr-image");
+      const menuUrlText = document.getElementById("menu-url");
+
+      menuUrlText.textContent = menuUrl;
+      qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=" + encodeURIComponent(menuUrl);
+    </script>
+  </body>
+</html>

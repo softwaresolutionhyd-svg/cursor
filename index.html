@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Online menu for Zam Zam Pizza & Cafe. Scan the QR code to view pizzas, burgers, rolls, pasta, deals, and drinks.">
+    <title>Zam Zam Pizza & Cafe - Online Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Zam Zam Pizza & Cafe home">
+          <span class="brand-mark">Z</span>
+          <span data-restaurant-name>Zam Zam Pizza & Cafe</span>
+        </a>
+      </nav>
+
+      <section id="top" class="hero-content">
+        <p class="eyebrow" data-tagline>Fresh Pizza - Cafe - Fast Food</p>
+        <h1 data-restaurant-name>Zam Zam Pizza & Cafe</h1>
+        <p class="hero-text" data-hero-text>
+          Scan QR, open menu, and order your favorite hot pizza, burgers, rolls,
+          pasta, snacks, and chilled drinks.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#menu">View Menu</a>
+          <a class="button secondary" href="#deals">Today's Deals</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="notice" aria-label="Ordering details">
+        <div>
+          <strong data-hours-label>Open Daily</strong>
+          <span data-hours>12:00 PM - 12:00 AM</span>
+        </div>
+        <div>
+          <strong data-phone-label>Order Now</strong>
+          <a data-phone href="tel:+920000000000">+92 000 0000000</a>
+        </div>
+        <div>
+          <strong data-location-label>Location</strong>
+          <span data-address>Add your restaurant address here</span>
+        </div>
+      </section>
+
+      <section class="intro">
+        <p data-intro>
+          Welcome to Zam Zam Pizza & Cafe. Yeh online menu QR scan karne ke baad
+          mobile par fast open hota hai. Prices aur items ko apne original menu
+          ke mutabiq edit kar sakte hain.
+        </p>
+      </section>
+
+      <section id="menu" class="menu-section">
+        <div class="section-heading">
+          <p class="eyebrow">Our Menu</p>
+          <h2>Choose Your Favorite</h2>
+        </div>
+
+        <div class="category-grid" id="menu-categories"></div>
+      </section>
+
+      <section class="cta">
+        <div>
+          <p class="eyebrow">Need Help?</p>
+          <h2 data-help-title>Call us for takeaway or delivery</h2>
+          <p data-help-text>Phone number, WhatsApp, aur address ko apni real details se replace kar dein.</p>
+        </div>
+        <a class="button primary" data-call-button href="tel:+920000000000">Call Now</a>
+      </section>
+    </main>
+
+    <a class="whatsapp-float" data-whatsapp-button href="https://wa.me/920000000000" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+      <span class="whatsapp-dot">WA</span>
+      <span>WhatsApp Order</span>
+    </a>
+
+    <footer>
+      <p><span id="year"></span> <span data-restaurant-name>Zam Zam Pizza & Cafe</span>. All rights reserved.</p>
+    </footer>
+
+    <script src="menu-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
