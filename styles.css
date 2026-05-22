@@ -42,8 +42,16 @@ a {
     url("https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80") center/cover;
 }
 
+.admin-header {
+  padding: 1.25rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 176, 0, 0.18), transparent 30rem),
+    linear-gradient(135deg, #21170f, #140f0b);
+}
+
 .topbar,
 .hero-content,
+.admin-hero,
 main,
 footer {
   width: min(1120px, 100%);
@@ -72,6 +80,13 @@ footer {
   letter-spacing: -0.02em;
 }
 
+.nav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
 .brand-mark {
   display: grid;
   width: 2.4rem;
@@ -96,6 +111,15 @@ footer {
   align-content: center;
   min-height: 58vh;
   padding: 4rem 0 2rem;
+}
+
+.admin-hero {
+  padding: 3rem 0 2.5rem;
+}
+
+.admin-hero p {
+  max-width: 740px;
+  color: var(--muted);
 }
 
 .eyebrow {
@@ -151,9 +175,18 @@ h3 {
   align-items: center;
   justify-content: center;
   min-height: 3rem;
+  border: 0;
   border-radius: 999px;
   padding: 0.8rem 1.25rem;
+  font: inherit;
   font-weight: 800;
+  cursor: pointer;
+}
+
+.button.compact {
+  min-height: auto;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
 }
 
 .button.primary {
@@ -302,6 +335,107 @@ main {
   color: var(--muted);
 }
 
+.admin-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-card,
+.admin-category {
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, var(--card-strong), var(--card));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.warning-card {
+  border-color: rgba(255, 176, 0, 0.35);
+  background:
+    linear-gradient(180deg, rgba(255, 176, 0, 0.12), transparent 48%),
+    linear-gradient(180deg, var(--card-strong), var(--card));
+}
+
+.admin-card-heading,
+.admin-category-top,
+.admin-actions,
+.admin-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.field,
+.check-field {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+}
+
+.field textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.check-field {
+  display: inline-flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.category-editor,
+.item-editor {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-category {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-category h3 {
+  color: var(--brand);
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.4fr) auto;
+  align-items: end;
+  gap: 0.75rem;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 0.9rem;
+}
+
+.small-danger {
+  border: 1px solid rgba(255, 110, 80, 0.45);
+  border-radius: 999px;
+  padding: 0.65rem 0.9rem;
+  background: rgba(255, 110, 80, 0.1);
+  color: #ffb09e;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
 footer {
   padding: 1.5rem 1.25rem 2rem;
   color: var(--muted);
@@ -371,6 +505,19 @@ footer {
   .cta {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .admin-card-heading,
+  .admin-category-top,
+  .admin-actions,
+  .admin-button-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-grid,
+  .item-row {
+    grid-template-columns: 1fr;
   }
 
   .button {

@@ -15,15 +15,18 @@
       <nav class="topbar" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="Zam Zam Pizza & Cafe home">
           <span class="brand-mark">Z</span>
-          <span>Zam Zam Pizza & Cafe</span>
+          <span data-restaurant-name>Zam Zam Pizza & Cafe</span>
         </a>
-        <a class="qr-link" href="qr.html">Print QR</a>
+        <div class="nav-actions">
+          <a class="qr-link" href="admin.html">Admin</a>
+          <a class="qr-link" href="qr.html">Print QR</a>
+        </div>
       </nav>
 
       <section id="top" class="hero-content">
-        <p class="eyebrow">Fresh Pizza - Cafe - Fast Food</p>
-        <h1>Zam Zam Pizza & Cafe</h1>
-        <p class="hero-text">
+        <p class="eyebrow" data-tagline>Fresh Pizza - Cafe - Fast Food</p>
+        <h1 data-restaurant-name>Zam Zam Pizza & Cafe</h1>
+        <p class="hero-text" data-hero-text>
           Scan QR, open menu, and order your favorite hot pizza, burgers, rolls,
           pasta, snacks, and chilled drinks.
         </p>
@@ -37,21 +40,21 @@
     <main>
       <section class="notice" aria-label="Ordering details">
         <div>
-          <strong>Open Daily</strong>
-          <span>12:00 PM - 12:00 AM</span>
+          <strong data-hours-label>Open Daily</strong>
+          <span data-hours>12:00 PM - 12:00 AM</span>
         </div>
         <div>
-          <strong>Order Now</strong>
-          <a href="tel:+920000000000">+92 000 0000000</a>
+          <strong data-phone-label>Order Now</strong>
+          <a data-phone href="tel:+920000000000">+92 000 0000000</a>
         </div>
         <div>
-          <strong>Location</strong>
-          <span>Add your restaurant address here</span>
+          <strong data-location-label>Location</strong>
+          <span data-address>Add your restaurant address here</span>
         </div>
       </section>
 
       <section class="intro">
-        <p>
+        <p data-intro>
           Welcome to Zam Zam Pizza & Cafe. Yeh online menu QR scan karne ke baad
           mobile par fast open hota hai. Prices aur items ko apne original menu
           ke mutabiq edit kar sakte hain.
@@ -64,103 +67,24 @@
           <h2>Choose Your Favorite</h2>
         </div>
 
-        <div class="category-grid">
-          <article class="menu-card">
-            <div class="card-heading">
-              <span class="icon">PZ</span>
-              <h3>Pizza</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Chicken Tikka Pizza</span><strong>Rs. 899</strong></li>
-              <li><span>Fajita Pizza</span><strong>Rs. 949</strong></li>
-              <li><span>Cheese Lover Pizza</span><strong>Rs. 999</strong></li>
-              <li><span>Special Zam Zam Pizza</span><strong>Rs. 1,149</strong></li>
-            </ul>
-          </article>
-
-          <article class="menu-card">
-            <div class="card-heading">
-              <span class="icon">BG</span>
-              <h3>Burgers</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Zinger Burger</span><strong>Rs. 399</strong></li>
-              <li><span>Beef Burger</span><strong>Rs. 449</strong></li>
-              <li><span>Chicken Cheese Burger</span><strong>Rs. 499</strong></li>
-              <li><span>Double Patty Burger</span><strong>Rs. 599</strong></li>
-            </ul>
-          </article>
-
-          <article class="menu-card">
-            <div class="card-heading">
-              <span class="icon">RL</span>
-              <h3>Rolls & Shawarma</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Chicken Paratha Roll</span><strong>Rs. 249</strong></li>
-              <li><span>Cheese Paratha Roll</span><strong>Rs. 299</strong></li>
-              <li><span>Chicken Shawarma</span><strong>Rs. 249</strong></li>
-              <li><span>Zam Zam Special Roll</span><strong>Rs. 349</strong></li>
-            </ul>
-          </article>
-
-          <article class="menu-card">
-            <div class="card-heading">
-              <span class="icon">SN</span>
-              <h3>Pasta & Snacks</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Alfredo Pasta</span><strong>Rs. 549</strong></li>
-              <li><span>Chicken Cheese Fries</span><strong>Rs. 399</strong></li>
-              <li><span>Nuggets 6 pcs</span><strong>Rs. 299</strong></li>
-              <li><span>Loaded Fries</span><strong>Rs. 449</strong></li>
-            </ul>
-          </article>
-
-          <article id="deals" class="menu-card highlight">
-            <div class="card-heading">
-              <span class="icon">DL</span>
-              <h3>Deals</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Small Pizza + Drink</span><strong>Rs. 699</strong></li>
-              <li><span>2 Zinger Burgers + Fries</span><strong>Rs. 999</strong></li>
-              <li><span>Large Pizza + 1.5L Drink</span><strong>Rs. 1,599</strong></li>
-              <li><span>Family Deal</span><strong>Rs. 2,499</strong></li>
-            </ul>
-          </article>
-
-          <article class="menu-card">
-            <div class="card-heading">
-              <span class="icon">DR</span>
-              <h3>Drinks & Cafe</h3>
-            </div>
-            <ul class="menu-list">
-              <li><span>Soft Drink</span><strong>Rs. 120</strong></li>
-              <li><span>Fresh Lime</span><strong>Rs. 180</strong></li>
-              <li><span>Tea</span><strong>Rs. 120</strong></li>
-              <li><span>Coffee</span><strong>Rs. 250</strong></li>
-            </ul>
-          </article>
-        </div>
+        <div class="category-grid" id="menu-categories"></div>
       </section>
 
       <section class="cta">
         <div>
           <p class="eyebrow">Need Help?</p>
-          <h2>Call us for takeaway or delivery</h2>
-          <p>Phone number, WhatsApp, aur address ko apni real details se replace kar dein.</p>
+          <h2 data-help-title>Call us for takeaway or delivery</h2>
+          <p data-help-text>Phone number, WhatsApp, aur address ko apni real details se replace kar dein.</p>
         </div>
-        <a class="button primary" href="tel:+920000000000">Call Now</a>
+        <a class="button primary" data-call-button href="tel:+920000000000">Call Now</a>
       </section>
     </main>
 
     <footer>
-      <p><span id="year"></span> Zam Zam Pizza & Cafe. All rights reserved.</p>
+      <p><span id="year"></span> <span data-restaurant-name>Zam Zam Pizza & Cafe</span>. All rights reserved.</p>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="menu-data.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

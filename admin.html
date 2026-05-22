@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Admin panel for editing Zam Zam Pizza & Cafe menu.">
+    <title>Admin Panel - Zam Zam Pizza & Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="admin-header">
+      <nav class="topbar" aria-label="Admin navigation">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">Z</span>
+          <span>Zam Zam Pizza & Cafe</span>
+        </a>
+        <div class="nav-actions">
+          <a class="qr-link" href="index.html">View Menu</a>
+          <a class="qr-link" href="qr.html">Print QR</a>
+        </div>
+      </nav>
+
+      <section class="admin-hero">
+        <p class="eyebrow">Admin Panel</p>
+        <h1>Edit Menu</h1>
+        <p>
+          Items aur prices edit karein. Save karne ke baad isi device/browser par
+          menu updated nazar aayega. Public website update karne ke liye
+          "Download menu-data.js" file ko repository mein replace karein.
+        </p>
+      </section>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-card warning-card">
+        <h2>Important</h2>
+        <p>
+          Yeh static admin panel hai. Is mein server login/database nahi hai, is
+          liye edits pehle browser mein save hoti hain. Permanent public update
+          ke liye exported file ko hosting par upload karna hoga.
+        </p>
+      </section>
+
+      <section class="admin-card">
+        <div class="admin-card-heading">
+          <div>
+            <p class="eyebrow">Restaurant Info</p>
+            <h2>Basic Details</h2>
+          </div>
+          <button class="button secondary compact" type="button" id="reset-default">Reset Default</button>
+        </div>
+
+        <div class="form-grid" id="restaurant-fields"></div>
+      </section>
+
+      <section class="admin-card">
+        <div class="admin-card-heading">
+          <div>
+            <p class="eyebrow">Menu Items</p>
+            <h2>Categories</h2>
+          </div>
+          <button class="button secondary compact" type="button" id="add-category">Add Category</button>
+        </div>
+
+        <div class="category-editor" id="category-editor"></div>
+      </section>
+
+      <section class="admin-actions admin-card">
+        <div>
+          <h2>Save Changes</h2>
+          <p id="admin-status">No changes saved yet.</p>
+        </div>
+        <div class="admin-button-row">
+          <button class="button primary" type="button" id="save-menu">Save in Browser</button>
+          <button class="button secondary" type="button" id="download-data">Download menu-data.js</button>
+          <a class="button secondary" href="index.html">Preview Menu</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="menu-data.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
