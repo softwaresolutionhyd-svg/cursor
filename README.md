@@ -25,13 +25,16 @@ online `index.html` menu.
 ## Admin panel
 
 Open `admin.html` to edit restaurant details, categories, menu items, and
-prices. Click **Save in Browser** to preview edits on the same device/browser.
+prices. The admin panel is locked with default PIN `1234` (change `ADMIN_PIN` in
+`admin.js` if you want a different PIN). Edits auto-save while you type, so
+`index.html` shows the updated menu on the same device/browser.
 
 Because this is a static website, browser edits do not automatically update the
 public hosted menu for every customer. To publish edited data permanently:
 
 1. Open `admin.html`.
-2. Make changes.
-3. Click **Download menu-data.js**.
-4. Replace the existing `menu-data.js` file in the repository/hosting with the
+2. Enter the admin PIN.
+3. Make changes; they auto-save in the browser.
+4. Click **Download menu-data.js**.
+5. Replace the existing `menu-data.js` file in the repository/hosting with the
    downloaded file.

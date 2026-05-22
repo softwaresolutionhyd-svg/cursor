@@ -1,7 +1,10 @@
 (function () {
+  const ADMIN_PIN = "1234";
+  const AUTH_KEY = "zam-zam-admin-unlocked-v1";
   const STORAGE_KEY = "zam-zam-menu-data-v1";
   const defaultData = window.ZAM_ZAM_MENU_DATA || { restaurant: {}, categories: [] };
   let state = readSavedData();
+  let autoSaveTimer = null;
 
   const restaurantFields = [
     ["name", "Restaurant Name"],
@@ -171,19 +174,32 @@
     });
   }
 
-  function saveMenu() {
-    syncStateFromInputs();
+  function normalizeState() {
     state.categories.forEach((category) => {
       category.id = slugify(category.id || category.title);
       category.code = String(category.code || category.title || "MN").slice(0, 3).toUpperCase();
     });
+  }
+
+  function persistMenu(message) {
+    clearTimeout(autoSaveTimer);
+    syncStateFromInputs();
+    normalizeState();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    setStatus("Saved. Ab View Menu open karein to isi browser mein updated menu nazar aayega.");
+    setStatus(message || "Auto-saved. View Menu open karein to updated menu nazar aayega.");
+  }
+
+  function scheduleAutoSave() {
+    clearTimeout(autoSaveTimer);
+    setStatus("Saving...");
+    autoSaveTimer = setTimeout(() => {
+      persistMenu("Auto-saved. View Menu open karein to updated menu nazar aayega.");
+    }, 450);
   }
 
   function downloadDataFile() {
-    syncStateFromInputs();
-    const source = "window.ZAM_ZAM_MENU_DATA = " + JSON.stringify(state, null, 2) + ";\\n";
+    persistMenu("Auto-saved. Download file ready ho rahi hai...");
+    const source = "window.ZAM_ZAM_MENU_DATA = " + JSON.stringify(state, null, 2) + ";\n";
     const blob = new Blob([source], { type: "text/javascript" });
     const url = URL.createObjectURL(blob);
     const link = createElement("a");
@@ -196,15 +212,31 @@
     setStatus("menu-data.js downloaded. Is file ko hosting/repository mein replace kar dein.");
   }
 
+  function setupAutoSave() {
+    const shell = document.getElementById("admin-shell");
+    shell.addEventListener("input", (event) => {
+      if (event.target.matches("input, textarea")) {
+        scheduleAutoSave();
+      }
+    });
+    shell.addEventListener("change", (event) => {
+      if (event.target.matches("input, textarea")) {
+        scheduleAutoSave();
+      }
+    });
+  }
+
   function bindEvents() {
-    document.getElementById("save-menu").addEventListener("click", saveMenu);
+    document.getElementById("save-menu").addEventListener("click", () => {
+      persistMenu("Saved now. View Menu open karein to updated menu nazar aayega.");
+    });
     document.getElementById("download-data").addEventListener("click", downloadDataFile);
 
     document.getElementById("reset-default").addEventListener("click", () => {
       state = clone(defaultData);
-      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       render();
-      setStatus("Default menu restored in this browser.");
+      setStatus("Default menu restored and auto-saved in this browser.");
     });
 
     document.getElementById("add-category").addEventListener("click", () => {
@@ -217,7 +249,7 @@
         items: [{ name: "New Item", price: "Rs. 0" }]
       });
       renderCategoryEditor();
-      setStatus("New category added. Save changes when ready.");
+      persistMenu("New category added and auto-saved.");
     });
 
     document.getElementById("category-editor").addEventListener("click", (event) => {
@@ -229,7 +261,7 @@
         const category = state.categories[Number(target.dataset.addItem)];
         category.items.push({ name: "New Item", price: "Rs. 0" });
         renderCategoryEditor();
-        setStatus("New item added.");
+        persistMenu("New item added and auto-saved.");
       }
 
       if (target.dataset.removeItem !== undefined) {
@@ -237,14 +269,52 @@
         const category = state.categories[Number(target.dataset.categoryIndex)];
         category.items.splice(Number(target.dataset.removeItem), 1);
         renderCategoryEditor();
-        setStatus("Item deleted.");
+        persistMenu("Item deleted and auto-saved.");
       }
 
       if (target.dataset.removeCategory !== undefined) {
         syncStateFromInputs();
         state.categories.splice(Number(target.dataset.removeCategory), 1);
         renderCategoryEditor();
-        setStatus("Category deleted.");
+        persistMenu("Category deleted and auto-saved.");
+      }
+    });
+  }
+
+  function showAdmin() {
+    document.getElementById("admin-lock").hidden = true;
+    document.getElementById("admin-shell").hidden = false;
+    render();
+    setStatus("Admin unlocked. Changes auto-save while you edit.");
+  }
+
+  function setupPinLock() {
+    const lock = document.getElementById("admin-lock");
+    const shell = document.getElementById("admin-shell");
+    const form = document.getElementById("pin-form");
+    const input = document.getElementById("pin-input");
+    const error = document.getElementById("pin-error");
+
+    if (window.sessionStorage.getItem(AUTH_KEY) === "true") {
+      lock.hidden = true;
+      shell.hidden = false;
+      return;
+    }
+
+    lock.hidden = false;
+    shell.hidden = true;
+    input.focus();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (input.value.trim() === ADMIN_PIN) {
+        window.sessionStorage.setItem(AUTH_KEY, "true");
+        error.textContent = "";
+        showAdmin();
+      } else {
+        error.textContent = "Wrong PIN. Dobara try karein.";
+        input.value = "";
+        input.focus();
       }
     });
   }
@@ -254,6 +324,11 @@
     renderCategoryEditor();
   }
 
+  setupPinLock();
   render();
   bindEvents();
+  setupAutoSave();
+  if (window.sessionStorage.getItem(AUTH_KEY) === "true") {
+    setStatus("Admin unlocked. Changes auto-save while you edit.");
+  }
 })();

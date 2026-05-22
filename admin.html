@@ -34,12 +34,28 @@
       </section>
     </header>
 
-    <main class="admin-shell">
+    <main class="admin-lock" id="admin-lock">
+      <section class="admin-card lock-card">
+        <p class="eyebrow">Locked</p>
+        <h2>Enter Admin PIN</h2>
+        <p>Menu edit karne ke liye PIN enter karein. Default PIN: 1234.</p>
+        <form class="pin-form" id="pin-form">
+          <label class="field">
+            <span>Admin PIN</span>
+            <input id="pin-input" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter PIN">
+          </label>
+          <button class="button primary" type="submit">Unlock Admin</button>
+        </form>
+        <p class="pin-error" id="pin-error" role="alert"></p>
+      </section>
+    </main>
+
+    <main class="admin-shell" id="admin-shell" hidden>
       <section class="admin-card warning-card">
         <h2>Important</h2>
         <p>
           Yeh static admin panel hai. Is mein server login/database nahi hai, is
-          liye edits pehle browser mein save hoti hain. Permanent public update
+          liye edits isi browser mein auto-save hoti hain. Permanent public update
           ke liye exported file ko hosting par upload karna hoga.
         </p>
       </section>
@@ -74,7 +90,7 @@
           <p id="admin-status">No changes saved yet.</p>
         </div>
         <div class="admin-button-row">
-          <button class="button primary" type="button" id="save-menu">Save in Browser</button>
+          <button class="button primary" type="button" id="save-menu">Save Now</button>
           <button class="button secondary" type="button" id="download-data">Download menu-data.js</button>
           <a class="button secondary" href="index.html">Preview Menu</a>
         </div>
