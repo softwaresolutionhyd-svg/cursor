@@ -25,7 +25,8 @@ online `index.html` menu.
 ## Admin panel
 
 Open `admin.html` to edit restaurant details, categories, menu items, and
-prices, and WhatsApp number. The admin panel is locked with default PIN `1234`
+prices, and WhatsApp number. The admin panel first shows a PIN login screen
+and only opens the edit form after the correct PIN. The default PIN is `1234`
 (change `ADMIN_PIN` in `admin.js` if you want a different PIN). Edits auto-save
 while you type, so `index.html` shows the updated menu on the same
 device/browser.

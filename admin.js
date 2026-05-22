@@ -1,10 +1,10 @@
 (function () {
   const ADMIN_PIN = "1234";
-  const AUTH_KEY = "zam-zam-admin-unlocked-v1";
   const STORAGE_KEY = "zam-zam-menu-data-v1";
   const defaultData = window.ZAM_ZAM_MENU_DATA || { restaurant: {}, categories: [] };
   let state = readSavedData();
   let autoSaveTimer = null;
+  let isInitialized = false;
 
   const restaurantFields = [
     ["name", "Restaurant Name"],
@@ -285,33 +285,37 @@
 
   function showAdmin() {
     document.getElementById("admin-lock").hidden = true;
+    document.getElementById("admin-header").hidden = false;
     document.getElementById("admin-shell").hidden = false;
-    render();
+
+    if (!isInitialized) {
+      render();
+      bindEvents();
+      setupAutoSave();
+      isInitialized = true;
+    }
+
     setStatus("Admin unlocked. Changes auto-save while you edit.");
   }
 
   function setupPinLock() {
     const lock = document.getElementById("admin-lock");
+    const header = document.getElementById("admin-header");
     const shell = document.getElementById("admin-shell");
     const form = document.getElementById("pin-form");
     const input = document.getElementById("pin-input");
     const error = document.getElementById("pin-error");
 
-    if (window.sessionStorage.getItem(AUTH_KEY) === "true") {
-      lock.hidden = true;
-      shell.hidden = false;
-      return;
-    }
-
     lock.hidden = false;
+    header.hidden = true;
     shell.hidden = true;
     input.focus();
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       if (input.value.trim() === ADMIN_PIN) {
-        window.sessionStorage.setItem(AUTH_KEY, "true");
         error.textContent = "";
+        input.value = "";
         showAdmin();
       } else {
         error.textContent = "Wrong PIN. Dobara try karein.";
@@ -327,10 +331,4 @@
   }
 
   setupPinLock();
-  render();
-  bindEvents();
-  setupAutoSave();
-  if (window.sessionStorage.getItem(AUTH_KEY) === "true") {
-    setStatus("Admin unlocked. Changes auto-save while you edit.");
-  }
 })();
